@@ -5,7 +5,7 @@ defmodule Slack.Rtm do
   def start(token) do
     case HTTPoison.get(@url <> token) do
       {:ok, response} ->
-        json = JSX.decode!(response.body, [{:labels, :atom}])
+        json = JSX.decode(response.body, [{:labels, :atom}])
         {:ok, json}
       {:error, reason} -> {:error, reason}
     end
